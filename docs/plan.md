@@ -4,7 +4,7 @@ Markdown
 # Project UXDI: Universal X-ray Detector Interface Development Plan
 
 ## 1. Executive Summary
-본 프로젝트는 다양한 X-ray Detector 제조사(Varex, Vieworks, Rayence ,Samsung, DRTech 등)의 상이한 SDK를 단일 표준 인터페이스(`IDetector`)로 추상화하는 미들웨어 개발을 목표로 합니다. 이를 통해 콘솔 애플리케이션(Console SW)은 하드웨어 변경 시에도 재컴파일 없이 플러그인 교체만으로 운영 가능해야 합니다.
+본 프로젝트는 다양한 X-ray Detector 제조사(Varex, Vieworks, Rayence, Samsung, DRTech, ABYZ 등)의 상이한 SDK를 단일 표준 인터페이스(`IDetector`)로 추상화하는 미들웨어 개발을 목표로 합니다. 또한, 실제 하드웨어 없이도 디텍터 동작을 에뮬레이션할 수 있는 가상 모듈(Emulator)을 제공합니다. 이를 통해 콘솔 애플리케이션(Console SW)은 하드웨어 변경 시에도 재컴파일 없이 플러그인 교체만으로 운영 가능해야 합니다.
 
 **Core Objectives:**
 1.  **Vendor Agnosticism:** 제조사 종속성 완전 제거 (Interface-based Design).
@@ -30,14 +30,22 @@ Markdown
           | (Load Instance)
           +-----------------------------+
           |                             |
-+----------------------+      +----------------------+
-|  Varex Adapter       |      |  Vieworks Adapter    |
-|  (Implements UXDI)   |      |  (Implements UXDI)   |
-+----------------------+      +----------------------+
-          |                             |
-    [ Vendor SDK A ]              [ Vendor SDK B ]
-          |                             |
-    ( Hardware A )                ( Hardware B )
++----------------------+      +----------------------+      +----------------------+
+|  Varex Adapter       |      |  Vieworks Adapter    |      |  ABYZ Adapter        |
+|  (Implements UXDI)   |      |  (Implements UXDI)   |      |  (Implements UXDI)   |
++----------------------+      +----------------------+      +----------------------+
+          |                             |                             |
+    [ Vendor SDK A ]              [ Vendor SDK B ]              [ Vendor SDK C ]
+          |                             |                             |
+    ( Hardware A )                ( Hardware B )                ( Hardware C )
+
++----------------------+
+|  Emulator (emul)     |
+|  (Virtual Detector)  |
++----------------------+
+          |
+    [ No Hardware ]
+    ( Emulated I/O )
 3. Implementation Specification (C++20)
 이 섹션의 코드는 인터페이스 정의, 데이터 구조, 그리고 어댑터 예시를 포함합니다.
 
@@ -332,7 +340,11 @@ W4: Target B (예: Vieworks) SDK 분석 및 1차 래핑.
 
 초점: 비동기 Polling 방식 -> Event 방식 변환 로직 구현.
 
-W5: 통합 테스트 (Memory Leak, Reconnection Stress Test).
+W4.5: Emulator (emul) 가상 디텍터 모듈 구현.
+
+초점: 실제 디텍터 프로토콜 시뮬레이션, 다양한 시나리오(정상/오류/지연) 에뮬레이션.
+
+W5: Target C (예: ABYZ) SDK 분석 및 1차 래핑 + 통합 테스트 (Memory Leak, Reconnection Stress Test).
 
 Phase 3: Integration & Optimization (Weeks 6-7)
 W6: Console GUI 연동 및 Zero-Copy 성능 검증.
