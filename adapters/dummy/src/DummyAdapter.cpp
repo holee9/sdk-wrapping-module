@@ -1,5 +1,4 @@
 #include "DummyDetector.h"
-#include "uxdi/uxdi_export.h"
 #include <cstring>
 
 using namespace uxdi::adapters::dummy;
@@ -7,6 +6,13 @@ using namespace uxdi::adapters::dummy;
 //=============================================================================
 // DLL Export Functions
 //=============================================================================
+
+// Export macros for adapter DLL
+#ifdef UXDI_DUMMY_EXPORTS
+#define ADAPTER_API __declspec(dllexport)
+#else
+#define ADAPTER_API __declspec(dllimport)
+#endif
 
 extern "C" {
 
@@ -19,7 +25,7 @@ extern "C" {
  * @param config JSON configuration string (can be empty or null)
  * @return Pointer to IDetector interface, or nullptr on failure
  */
-UXDI_API uxdi::IDetector* CreateDetector(const char* config) {
+ADAPTER_API uxdi::IDetector* CreateDetector(const char* config) {
     (void)config;  // Config is reserved for future use
 
     try {
@@ -44,7 +50,7 @@ UXDI_API uxdi::IDetector* CreateDetector(const char* config) {
  *
  * @param detector Pointer to IDetector interface to destroy
  */
-UXDI_API void DestroyDetector(uxdi::IDetector* detector) {
+ADAPTER_API void DestroyDetector(uxdi::IDetector* detector) {
     if (detector) {
         try {
             // Ensure shutdown is called before deletion

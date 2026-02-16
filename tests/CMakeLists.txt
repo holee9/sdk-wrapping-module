@@ -45,3 +45,8 @@ gtest_discover_tests(uxdi_core_tests)
 
 # Adapter tests (placeholder - will be implemented in Task 9, 15)
 message(STATUS "Adapter tests will be added in Task 9 and Task 15")
+
+# ============================================================================
+# Integration Tests
+# ============================================================================
+add_subdirectory(integration)
