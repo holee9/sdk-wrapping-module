@@ -11,6 +11,129 @@
 
 </div>
 
+---
+
+## Claude Code + Codex MCP Integration
+
+This project has verified and tested integration between Claude Code and OpenAI's Codex extension for AI-powered task delegation.
+
+### Quick Setup
+
+**Prerequisites:**
+- OpenAI ChatGPT VSCode extension (`openai.chatgpt`) installed
+- ChatGPT account logged in (Plus, Pro, Business, Edu, or Enterprise plan)
+
+**Configuration (`C:\Users\user\.mcp.json`):**
+
+```json
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/.mcp.schema.json",
+  "mcpServers": {
+    "codex": {
+      "$comment": "OpenAI Codex - AI task delegation via MCP",
+      "command": "C:\\Users\\user\\.vscode\\extensions\\openai.chatgpt-0.4.74-win32-x64\\bin\\windows-x86_64\\codex.exe",
+      "args": ["mcp-server"]
+    }
+  },
+  "staggeredStartup": {
+    "enabled": true,
+    "delayMs": 500,
+    "connectionTimeout": 60000
+  }
+}
+```
+
+**Claude Code Settings (`settings.json`):**
+
+```json
+{
+  "permissions": {
+    "mcp__codex*": "allow"
+  }
+}
+```
+
+**Verify Setup:**
+
+```bash
+# Check Codex login status
+"C:\Users\user\.vscode\extensions\openai.chatgpt-0.4.74-win32-x64\bin\windows-x86_64\codex.exe" login status
+```
+
+Expected output: `Logged in using ChatGPT`
+
+### Available Tools
+
+| Tool | Purpose |
+|------|---------|
+| `mcp__codex__codex` | Start new conversation |
+| `mcp__codex__codex-reply` | Continue conversation with threadId |
+
+### Verified Use Cases
+
+- ✅ Mathematical calculations
+- ✅ TypeScript/JavaScript code generation
+- ✅ Next.js/React component creation
+- ✅ Multi-turn conversations with context preservation
+
+<details>
+<summary>View Detailed Integration Guide</summary>
+
+### Installation Paths
+
+| Component | Path |
+|-----------|------|
+| Codex Extension | `C:\Users\user\.vscode\extensions\openai.chatgpt-0.4.74-win32-x64` |
+| Codex Executable | `bin\windows-x86_64\codex.exe` |
+| MCP Config | `C:\Users\user\.mcp.json` (global) |
+
+### Usage Examples
+
+**Basic Calculation:**
+```javascript
+mcp__codex__codex({ prompt: "Calculate: 15 * 23 + 7" })
+// Result: 352
+```
+
+**TypeScript Code Generation:**
+```javascript
+mcp__codex__codex({
+  prompt: "TypeScript로 피보나치 수열을 계산하는 함수를 작성해주세요."
+})
+```
+
+**Multi-turn Conversation:**
+```javascript
+// Start conversation
+const result1 = mcp__codex__codex({ prompt: "What is 2+2?" })
+
+// Continue with threadId
+const result2 = mcp__codex__codex-reply({
+  threadId: result1.threadId,
+  prompt: "Now write a TypeScript function for fibonacci"
+})
+```
+
+### Troubleshooting
+
+| Symptom | Solution |
+|---------|----------|
+| MCP tools not loading | Increase `connectionTimeout` to 60000ms |
+| "Not logged in" error | Run `codex login` again |
+| Tools fail to appear | Add `mcp__codex*` to settings.json permissions |
+
+### Verification Checklist
+
+- [ ] Codex extension installed in VSCode
+- [ ] `codex login status` shows "Logged in"
+- [ ] `.mcp.json` configured with correct codex.exe path
+- [ ] `connectionTimeout` set to 60000ms
+- [ ] Claude Code restarted after configuration
+
+</details>
+
+---
+
 ## Overview
 
 UXDI (Universal X-ray Detector Interface) is a C++20 middleware that abstracts various X-ray Detector vendor SDKs (Varex, Vieworks, ABYZ, etc.) behind a standard `IDetector` interface. This allows console applications to switch between different detector hardware by simply replacing the adapter DLL, without recompilation.

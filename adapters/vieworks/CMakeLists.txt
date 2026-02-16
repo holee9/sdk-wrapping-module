@@ -3,27 +3,30 @@
 
 set(VIEWORKS_ADAPTER_SOURCES
     src/VieworksAdapter.cpp
+    src/VieworksDetector.cpp
+)
+
+# Mock SDK sources (for development/testing)
+set(VIEWORKS_MOCK_SDK_SOURCES
+    ${CMAKE_SOURCE_DIR}/mock_sdk/vieworks/src/VieworksMockSDK.cpp
 )
 
 add_library(uxdi_vieworks SHARED
     ${VIEWORKS_ADAPTER_SOURCES}
+    ${VIEWORKS_MOCK_SDK_SOURCES}
 )
 
 target_include_directories(uxdi_vieworks
     PRIVATE
         ${CMAKE_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_SOURCE_DIR}/mock_sdk/vieworks/include
 )
-
-# TODO: Add Vieworks SDK include path when available
-# target_include_directories(uxdi_vieworks PRIVATE ${VIEWORKS_SDK_INCLUDE_DIRS})
 
 target_link_libraries(uxdi_vieworks
     PRIVATE
         uxdi_core
 )
-
-# TODO: Add Vieworks SDK libraries when available
-# target_link_libraries(uxdi_vieworks PRIVATE ${VIEWORKS_SDK_LIBRARIES})
 
 target_compile_features(uxdi_vieworks PRIVATE cxx_std_20)
 
@@ -31,6 +34,7 @@ target_compile_features(uxdi_vieworks PRIVATE cxx_std_20)
 if(WIN32)
     target_compile_definitions(uxdi_vieworks PRIVATE
         UXDI_VIEWORKS_EXPORTS
+        VIEWORKS_MOCK_SDK_IMPL
         _CRT_SECURE_NO_WARNINGS
     )
 endif()

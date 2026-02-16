@@ -3,27 +3,30 @@
 
 set(VAREX_ADAPTER_SOURCES
     src/VarexAdapter.cpp
+    src/VarexDetector.cpp
+)
+
+# Mock SDK sources (for development/testing)
+set(VAREX_MOCK_SDK_SOURCES
+    ${CMAKE_SOURCE_DIR}/mock_sdk/varex/src/VarexMockSDK.cpp
 )
 
 add_library(uxdi_varex SHARED
     ${VAREX_ADAPTER_SOURCES}
+    ${VAREX_MOCK_SDK_SOURCES}
 )
 
 target_include_directories(uxdi_varex
     PRIVATE
         ${CMAKE_SOURCE_DIR}/include
+        ${CMAKE_CURRENT_SOURCE_DIR}/include
+        ${CMAKE_SOURCE_DIR}/mock_sdk/varex/include
 )
-
-# TODO: Add Varex SDK include path when available
-# target_include_directories(uxdi_varex PRIVATE ${VAREX_SDK_INCLUDE_DIRS})
 
 target_link_libraries(uxdi_varex
     PRIVATE
         uxdi_core
 )
-
-# TODO: Add Varex SDK libraries when available
-# target_link_libraries(uxdi_varex PRIVATE ${VAREX_SDK_LIBRARIES})
 
 target_compile_features(uxdi_varex PRIVATE cxx_std_20)
 
@@ -31,6 +34,7 @@ target_compile_features(uxdi_varex PRIVATE cxx_std_20)
 if(WIN32)
     target_compile_definitions(uxdi_varex PRIVATE
         UXDI_VAREX_EXPORTS
+        VAREX_MOCK_SDK_IMPL
         _CRT_SECURE_NO_WARNINGS
     )
 endif()

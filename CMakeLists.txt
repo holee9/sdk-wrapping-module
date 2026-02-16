@@ -67,6 +67,7 @@ add_subdirectory(tests)
 # Examples
 # ============================================================================
 add_subdirectory(examples/cli)
+add_subdirectory(examples/gui_demo)
 
 # ============================================================================
 # Installation

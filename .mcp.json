@@ -1,0 +1,34 @@
+{
+  "$schema": "https://raw.githubusercontent.com/anthropics/claude-code/main/.mcp.schema.json",
+  "mcpServers": {
+    "context7": {
+      "$comment": "Up-to-date documentation and code examples via Context7",
+      "command": "cmd.exe",
+      "args": ["/c", "npx -y @upstash/context7-mcp@latest"]
+    },
+    "sequential-thinking": {
+      "$comment": "Step-by-step reasoning for complex problems",
+      "command": "cmd.exe",
+      "args": ["/c", "npx -y @modelcontextprotocol/server-sequential-thinking"]
+    },
+    "codex": {
+      "$comment": "OpenAI Codex MCP for AI-assisted code generation",
+      "command": "C:\\Users\\user\\.vscode\\extensions\\openai.chatgpt-0.4.74-win32-x64\\bin\\windows-x86_64\\codex.exe",
+      "args": ["mcp-server"],
+      "env": {
+        "CODEX_LOG_LEVEL": "debug"
+      }
+    },
+    "pencil": {
+      "$comment": "UI/UX design editing for .pen files",
+      "command": "c:\\Users\\user\\.vscode\\extensions\\highagency.pencildev-0.6.24\\out\\mcp-server-windows-x64.exe",
+      "args": ["--app", "visual_studio_code"],
+      "type": "stdio"
+    }
+  },
+  "staggeredStartup": {
+    "enabled": true,
+    "delayMs": 500,
+    "connectionTimeout": 60000
+  }
+}
