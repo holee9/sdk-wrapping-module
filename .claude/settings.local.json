@@ -1,0 +1,50 @@
+{
+  "env": {
+    "ANTHROPIC_AUTH_TOKEN": "7380ef71872c41f18b3e530ab69ac04f.GWXOdMMuCZEUMBcN",
+    "ANTHROPIC_BASE_URL": "https://api.z.ai/api/anthropic",
+    "ANTHROPIC_DEFAULT_HAIKU_MODEL": "glm-4.7-flashx",
+    "ANTHROPIC_DEFAULT_OPUS_MODEL": "glm-5",
+    "ANTHROPIC_DEFAULT_SONNET_MODEL": "glm-4.7"
+  },
+  "permissions": {
+    "allow": [
+      "Bash(code --list-extensions)",
+      "Bash(ps -aW)",
+      "Bash(tasklist)",
+      "Bash(env)",
+      "Bash(ss -tln)",
+      "Bash(\"C:/Users/user/.vscode/extensions/openai.chatgpt-0.4.74-win32-x64/bin/windows-x86_64/codex.exe\" --help)",
+      "Bash(\"C:/Users/user/.vscode/extensions/openai.chatgpt-0.4.74-win32-x64/bin/windows-x86_64/codex.exe\" mcp --help)",
+      "Bash(\"C:/Users/user/.vscode/extensions/openai.chatgpt-0.4.74-win32-x64/bin/windows-x86_64/codex.exe\" mcp-server --help)",
+      "Bash(\"C:/Users/user/.vscode/extensions/openai.chatgpt-0.4.74-win32-x64/bin/windows-x86_64/codex.exe\" mcp list)",
+      "Bash(timeout 5 \"C:/Users/user/.vscode/extensions/openai.chatgpt-0.4.74-win32-x64/bin/windows-x86_64/codex.exe\" mcp-server)",
+      "Bash(\"C:/Users/user/.vscode/extensions/openai.chatgpt-0.4.74-win32-x64/bin/windows-x86_64/codex.exe\" exec --help)",
+      "Bash(\"C:/Users/user/.vscode/extensions/openai.chatgpt-0.4.74-win32-x64/bin/windows-x86_64/codex.exe\" login status)",
+      "Bash(\"C:/Users/user/.vscode/extensions/openai.chatgpt-0.4.74-win32-x64/bin/windows-x86_64/codex.exe\" exec --json --output-last-message /tmp/codex_result.json \"Summarize the README.md file in one sentence\")",
+      "Bash(./scripts/verify-codex-integration.sh)",
+      "Bash(git worktree add:*)",
+      "Bash(git push:*)",
+      "Bash(cmake:*)",
+      "Bash(export PATH=\"/c/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin:$PATH\")",
+      "Bash(git add:*)",
+      "Bash(git commit:*)",
+      "mcp__sequential-thinking__sequentialthinking",
+      "Bash(where cmake)",
+      "Bash(\"/c/Program Files/CMake/bin/cmake.exe\" -B build -S . -G \"Visual Studio 17 2022\" -A x64)",
+      "Bash(\"/c/Program Files/CMake/bin/cmake\" --build build --config Debug --target uxdi_core_tests -j8)",
+      "Bash(wc -l tests/test_core/*.cpp)",
+      "Bash(\"/c/Program Files/Microsoft Visual Studio/2022/Community/Common7/IDE/CommonExtensions/Microsoft/CMake/CMake/bin/cmake.exe\" --version)",
+      "Bash(cmd.exe /c '\"\"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\VC\\\\Auxiliary\\\\Build\\\\vcvars64.bat\"\" && cmake -B build -S . -G \"\"Visual Studio 17 2022\"\" -A x64 2>&1')",
+      "Bash(cmd.exe /c '\"\"C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\VC\\\\Auxiliary\\\\Build\\\\vcvars64.bat\"\" && cmake -B build -S . -G \"\"Visual Studio 17 2022\"\" -A x64')",
+      "Bash(powershell.exe -Command \"& { & ''C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\VC\\\\Auxiliary\\\\Build\\\\vcvars64.bat''; & ''C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\Common7\\\\IDE\\\\CommonExtensions\\\\Microsoft\\\\CMake\\\\CMake\\\\bin\\\\cmake.exe'' -B build -S . -G ''Visual Studio 17 2022'' -A x64 }\")",
+      "Bash(powershell.exe -Command \"& { & ''C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\VC\\\\Auxiliary\\\\Build\\\\vcvars64.bat''; & ''C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\Common7\\\\IDE\\\\CommonExtensions\\\\Microsoft\\\\CMake\\\\CMake\\\\bin\\\\cmake.exe'' --build build --config Debug }\")",
+      "Bash(powershell.exe -Command \"& { & ''C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\VC\\\\Auxiliary\\\\Build\\\\vcvars64.bat''; & ''D:\\\\workspace-github\\\\sdk-wrapping-module\\\\build\\\\bin\\\\uxdi_core_tests.exe'' }\")",
+      "Bash(powershell.exe -Command \"& { & ''C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\VC\\\\Auxiliary\\\\Build\\\\vcvars64.bat''; & ''C:\\\\Program Files\\\\Microsoft Visual Studio\\\\2022\\\\Community\\\\Common7\\\\IDE\\\\CommonExtensions\\\\Microsoft\\\\CMake\\\\CMake\\\\bin\\\\cmake.exe'' --build build --config Debug --target uxdi_core_tests }\")",
+      "Bash(git reset build/)"
+    ]
+  },
+  "enabledMcpjsonServers": [
+    "context7",
+    "sequential-thinking"
+  ]
+}
